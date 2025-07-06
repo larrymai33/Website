@@ -1,0 +1,105 @@
+@import "tailwindcss";
+
+:root {
+  --radius: 0.5rem;
+}
+
+@theme {
+  --color-background: #ffffff;
+  --color-foreground: #171717;
+  --color-border: #e5e7eb;
+  --color-muted: #f9fafb;
+  --color-muted-foreground: #6b7280;
+  --color-primary: #3b82f6;
+  --color-primary-foreground: #ffffff;
+  --color-secondary: #f3f4f6;
+  --color-secondary-foreground: #374151;
+  --color-accent: #f3f4f6;
+  --color-accent-foreground: #374151;
+  --color-destructive: #ef4444;
+  --color-destructive-foreground: #ffffff;
+  --color-card: #ffffff;
+  --color-card-foreground: #171717;
+  --color-popover: #ffffff;
+  --color-popover-foreground: #171717;
+  --color-input: #ffffff;
+  --color-ring: #3b82f6;
+  --radius: 0.5rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background: #0a0a0a;
+    --color-foreground: #ededed;
+    --color-border: #262626;
+    --color-muted: #171717;
+    --color-muted-foreground: #a3a3a3;
+    --color-primary: #3b82f6;
+    --color-primary-foreground: #ffffff;
+    --color-secondary: #262626;
+    --color-secondary-foreground: #d4d4d4;
+    --color-accent: #262626;
+    --color-accent-foreground: #d4d4d4;
+    --color-destructive: #ef4444;
+    --color-destructive-foreground: #ffffff;
+    --color-card: #0a0a0a;
+    --color-card-foreground: #ededed;
+    --color-popover: #0a0a0a;
+    --color-popover-foreground: #ededed;
+    --color-input: #0a0a0a;
+    --color-ring: #3b82f6;
+  }
+}
+
+body {
+  background: var(--color-background);
+  color: var(--color-foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Smooth transitions */
+* {
+  transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Card hover effects */
+.card-hover {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
