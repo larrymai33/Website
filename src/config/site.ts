@@ -26,6 +26,7 @@ export const siteConfig = {
       description: "Personal website (this one) showcasing my work and skills as a software engineer.",
       tech: ["Next.js", "Node.js", "Tailwind CSS", "JavaScript", "TypeScript"],
       github: "https://github.com/larrymai33/Website",
+      image: ""
       
     },
     {
@@ -33,12 +34,14 @@ export const siteConfig = {
       description: "Application that monitors retail websites for item availability.",
       tech: ["Python"],
       github: "https://github.com/larrymai33/Target-Monitor",
+      image: ""
     },
     {
       title: "Geographical Environmental Module",
       description: "Hardware and software device used for external environmental monitoring.",
       tech: ["C++", "Python", "Arduino", "Eagle"],
       demo: "https://web.ece.ucsb.edu/~yoga/capstone/static/img/projects/poster/gem_poster.pdf",
+      image: ""
       
     },
   ],
