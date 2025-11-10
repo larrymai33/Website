@@ -9,9 +9,7 @@ import {
   Code,
   Server,
   Brain,
-  Briefcase,
-  GraduationCap,
-  FlaskConical
+  GraduationCap
 } from 'lucide-react';
 import { siteConfig } from '@/config/site';
 
