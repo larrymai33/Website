@@ -22,28 +22,28 @@ export default function Home() {
       {/* Navigation */}
       <nav className="fixed top-0 w-full bg-background/80 backdrop-blur-sm z-50 border-b border-border">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
+          <div className="flex justify-between items-center h-16 sm:h-16">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
-              className="text-xl font-bold text-white"
+              className="text-lg sm:text-xl font-bold text-white"
             >
               {siteConfig.name}
             </motion.div>
-            <div className="flex items-center space-x-6">
-              <a href="#projects" className="text-white hover:text-gray-300 transition-colors">
+            <div className="flex items-center space-x-2 sm:space-x-4 md:space-x-6 flex-wrap gap-y-1">
+              <a href="#projects" className="text-xs sm:text-sm text-white hover:text-gray-300 transition-colors whitespace-nowrap">
                 Featured Projects
               </a>
-              <a href="#experience" className="text-white hover:text-gray-300 transition-colors">
+              <a href="#experience" className="text-xs sm:text-sm text-white hover:text-gray-300 transition-colors whitespace-nowrap">
                 Experience
               </a>
-              <a href="#education" className="text-white hover:text-gray-300 transition-colors">
+              <a href="#education" className="text-xs sm:text-sm text-white hover:text-gray-300 transition-colors whitespace-nowrap">
                 Education
               </a>
-              <a href="#research" className="text-white hover:text-gray-300 transition-colors">
+              <a href="#research" className="text-xs sm:text-sm text-white hover:text-gray-300 transition-colors whitespace-nowrap">
                 Research
               </a>
-              <a href="#skills" className="text-white hover:text-gray-300 transition-colors">
+              <a href="#skills" className="text-xs sm:text-sm text-white hover:text-gray-300 transition-colors whitespace-nowrap">
                 Skills & Technologies
               </a>
             </div>
