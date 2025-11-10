@@ -1,7 +1,6 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import Image from 'next/image';
 import { 
   Github, 
   Linkedin, 
@@ -9,13 +8,16 @@ import {
   ExternalLink, 
   Code,
   Server,
-  Brain
+  Brain,
+  Briefcase,
+  GraduationCap,
+  FlaskConical
 } from 'lucide-react';
 import { siteConfig } from '@/config/site';
 
 export default function Home() {
 
-  const { projects, skills } = siteConfig;
+  const { projects, skills, experience, education, research } = siteConfig;
 
   return (
     <div className="min-h-screen">
@@ -34,6 +36,15 @@ export default function Home() {
               <a href="#projects" className="text-white hover:text-gray-300 transition-colors">
                 Featured Projects
               </a>
+              <a href="#experience" className="text-white hover:text-gray-300 transition-colors">
+                Experience
+              </a>
+              <a href="#education" className="text-white hover:text-gray-300 transition-colors">
+                Education
+              </a>
+              <a href="#research" className="text-white hover:text-gray-300 transition-colors">
+                Research
+              </a>
               <a href="#skills" className="text-white hover:text-gray-300 transition-colors">
                 Skills & Technologies
               </a>
@@ -43,7 +54,7 @@ export default function Home() {
       </nav>
 
       {/* Hero Section */}
-      <section className="pt-24 pb-16 px-4 sm:px-6 lg:px-8">
+      <section className="pt-32 pb-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -90,6 +101,7 @@ export default function Home() {
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.6 }}
             className="text-3xl font-bold text-center mb-12"
           >
@@ -102,31 +114,22 @@ export default function Home() {
                 key={project.title}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 className="bg-card rounded-xl p-6 card-hover border border-border"
               >
-                <div className="h-48 rounded-lg mb-6 overflow-hidden">
-                  {project.image ? (
-                    <Image 
-                      src={project.image} 
-                      alt={project.title}
-                      width={400}
-                      height={192}
-                      className="w-full h-full object-cover"
-                    />
-                  ) : (
-                    <div className="w-full h-full bg-black flex items-center justify-center">
-                      <Code size={48} className="text-white" />
-                    </div>
+                <div className="flex items-start justify-between mb-3">
+                  <h3 className="text-xl font-bold">{project.title}</h3>
+                  {project.year && (
+                    <span className="text-sm text-muted-foreground font-medium">{project.year}</span>
                   )}
                 </div>
-                <h3 className="text-xl font-bold mb-3">{project.title}</h3>
                 <p className="text-muted-foreground mb-4">{project.description}</p>
                 <div className="flex flex-wrap gap-2 mb-4">
                   {project.tech.map((tech) => (
                     <span
                       key={tech}
-                      className="px-3 py-1 bg-muted text-sm rounded-full text-muted-foreground"
+                      className="px-3 py-1 bg-blue-500/10 text-blue-500 text-sm rounded-full border border-blue-500/20"
                     >
                       {tech}
                     </span>
@@ -134,18 +137,159 @@ export default function Home() {
                 </div>
                 <div className="flex space-x-4">
                   {project.github && (
-                    <a href={project.github} className="flex items-center space-x-2 text-muted-foreground hover:text-foreground transition-colors">
+                    <a href={project.github} target="_blank" rel="noopener noreferrer" className="flex items-center space-x-2 text-muted-foreground hover:text-foreground transition-colors">
                       <Github size={16} />
                       <span>GitHub</span>
                     </a>
                   )}
+                  {project.link && (
+                    <a href={project.link.startsWith('http') ? project.link : `https://${project.link}`} target="_blank" rel="noopener noreferrer" className="flex items-center space-x-2 text-muted-foreground hover:text-foreground transition-colors">
+                      <ExternalLink size={16} />
+                      <span>Live Demo</span>
+                    </a>
+                  )}
                   {project.demo && (
-                    <a href={project.demo} className="flex items-center space-x-2 text-muted-foreground hover:text-foreground transition-colors">
+                    <a href={project.demo} target="_blank" rel="noopener noreferrer" className="flex items-center space-x-2 text-muted-foreground hover:text-foreground transition-colors">
                       <ExternalLink size={16} />
                       <span>Live Demo</span>
                     </a>
                   )}
                 </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Experience Section */}
+      <section id="experience" className="py-16 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-3xl font-bold text-center mb-12"
+          >
+            Experience
+          </motion.h2>
+          
+          <div className="space-y-8">
+            {experience.map((job, index) => (
+              <motion.div
+                key={`${job.company}-${index}`}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="bg-card rounded-xl p-6 border border-border"
+              >
+                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-4">
+                  <div>
+                    <h3 className="text-xl font-bold mb-1">{job.position}</h3>
+                    <p className="text-lg text-blue-500 font-semibold mb-1">{job.company}</p>
+                    <div className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
+                      <span>{job.location}</span>
+                      <span>•</span>
+                      <span>{job.startDate} - {job.endDate}</span>
+                    </div>
+                  </div>
+                </div>
+                <ul className="mt-4 space-y-2">
+                  {job.achievements.map((achievement, idx) => (
+                    <li key={idx} className="text-muted-foreground flex items-start">
+                      <span className="text-blue-500 mr-2 mt-1">●</span>
+                      <span>{achievement}</span>
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Education Section */}
+      <section id="education" className="py-16 px-4 sm:px-6 lg:px-8 bg-muted">
+        <div className="max-w-4xl mx-auto">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-3xl font-bold text-center mb-12"
+          >
+            Education
+          </motion.h2>
+          
+          <div className="space-y-6">
+            {education.map((edu, index) => (
+              <motion.div
+                key={`${edu.school}-${index}`}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="bg-card rounded-xl p-6 border border-border"
+              >
+                <div className="flex items-start gap-4">
+                  <div className="bg-black w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0">
+                    <GraduationCap size={24} className="text-white" />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-xl font-bold mb-1">{edu.degree}</h3>
+                    <p className="text-lg text-blue-500 font-semibold mb-2">{edu.school}</p>
+                    <p className="text-sm text-muted-foreground">
+                      {edu.startDate} - {edu.endDate}
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Research Section */}
+      <section id="research" className="py-16 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-3xl font-bold text-center mb-12"
+          >
+            Research
+          </motion.h2>
+          
+          <div className="space-y-8">
+            {research.map((project, index) => (
+              <motion.div
+                key={`${project.title}-${index}`}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="bg-card rounded-xl p-6 border border-border"
+              >
+                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between mb-4">
+                  <div>
+                    <h3 className="text-xl font-bold mb-1">{project.title}</h3>
+                    <p className="text-lg text-blue-500 font-semibold mb-1">{project.organization}</p>
+                    <div className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
+                      <span>{project.startDate} - {project.endDate}</span>
+                    </div>
+                  </div>
+                </div>
+                <ul className="mt-4 space-y-2">
+                  {project.description.map((item, idx) => (
+                    <li key={idx} className="text-muted-foreground flex items-start">
+                      <span className="text-blue-500 mr-2 mt-1">●</span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
               </motion.div>
             ))}
           </div>
@@ -158,6 +302,7 @@ export default function Home() {
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.6 }}
             className="text-3xl font-bold text-center mb-12"
           >
@@ -169,6 +314,7 @@ export default function Home() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.1 }}
               className="text-center"
             >
@@ -192,6 +338,7 @@ export default function Home() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
               className="text-center"
             >
@@ -215,6 +362,7 @@ export default function Home() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.3 }}
               className="text-center"
             >
@@ -243,6 +391,7 @@ export default function Home() {
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.6 }}
             className="text-3xl font-bold mb-8"
           >
@@ -251,6 +400,7 @@ export default function Home() {
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
             className="text-lg text-muted-foreground mb-8"
           >
@@ -259,6 +409,7 @@ export default function Home() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
             className="flex justify-center space-x-6"
           >
